@@ -5,11 +5,11 @@ puts "Какой твой любимый язык программировани
 ARGV.pop
 lang = gets.chomp
 
-case lang
-	when "Python" 
+case 
+	when lang =="Python" 
 		puts "Одобряю!" 
-	when "C#" 
+	when lang=="C#" 
 		puts "Скоро будет ruby!, а не твой #{lang}"
-	when "ruby" 
+	when lang=="ruby" 
 		puts "Ты подлиза!"
 end
