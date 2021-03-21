@@ -6,10 +6,9 @@ def prost numb
 	for i in 2..Math.sqrt(numb)
 		if(numb%i==0)
 			return false
-		else
-			return true
 		end
 	end
+	return true
 end
 
 def sum_prost numb
