@@ -1,6 +1,5 @@
 #var-1
-numb = ARGV[0]
-numb = numb.to_i
+
 
 def sum_dig numb
 	sum=0
@@ -11,7 +10,7 @@ def sum_dig numb
     end
     sum
 end
-puts sum_dig numb
+
 
 def pr_dig numb
   pr=1
@@ -22,7 +21,7 @@ def pr_dig numb
     end
     pr
 end
-puts pr_dig numb
+
 
 def max_dig numb
   max = numb%10
@@ -35,7 +34,7 @@ def max_dig numb
   end
   max
 end
-puts max_dig numb
+
 
 def min_dig numb
   min = numb%10
@@ -48,7 +47,7 @@ def min_dig numb
   end
   min
 end
-puts min_dig numb
+
 
 #method1
 def prost numb
@@ -69,7 +68,7 @@ def sum_prost_1 numb
 	end
 	sum
 end
-puts sum_prost_1 numb
+
 
 
 #method2
@@ -85,7 +84,7 @@ def kolvo_2 numb
 	end
 	k
 end
-puts kolvo_2 numb
+
 
 
 #method3
@@ -98,4 +97,42 @@ def pr_3 numb
 	end
 	pr
 end
-puts pr_3 numb
+
+#c = ARGV[0]
+#c = gets.to_i
+
+#numb = ARGV[1]
+#numb = gets.to_i
+
+
+def main 
+	if ARGV.length <2
+		puts "Hello, World!"
+	else
+		case ARGV[0]
+			when '1'
+				puts sum_dig ARGV[1].to_i
+			when '2'
+				puts pr_dig ARGV[1].to_i
+			when '3'
+				puts max_dig ARGV[1].to_i
+			when '4'
+				puts min_dig ARGV[1].to_i
+			when '5'
+				puts sum_prost_1 ARGV[1].to_i
+			when '6'
+				puts kolvo_2 ARGV[1].to_i
+			when '7'
+				puts pr_3 ARGV[1].to_i
+		end
+	end
+end
+
+main
+
+
+
+
+
+
+
