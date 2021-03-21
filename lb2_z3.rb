@@ -10,6 +10,10 @@ def vv kol
     #3 добавление в начало
     arr.unshift(77)
     puts print arr
+    #4
+    arr[3]=66
+    puts print arr
+
 
 end
 vv 5
