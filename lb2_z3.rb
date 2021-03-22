@@ -19,7 +19,7 @@ def vv kol
     puts print arr
 end
 vv 5
-=end
+
 
 
 
@@ -28,3 +28,23 @@ def read
 	return arr.each {|i| i.to_i}
 end
  puts read
+=end
+
+
+def choice n,w
+  case n
+  when 1
+    puts "введите кол-во эл и числа"
+	arr=Array.new( ( gets.to_i ) ){ |i| gets.to_i } 
+    puts arr
+  when 2
+    arr = File.open(w){ |file| file.read.split }
+	arr.each {|i| i.to_i}
+    print puts arr
+  end
+end
+choice 1,'file.txt'
+
+
+			
+			
