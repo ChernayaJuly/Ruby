@@ -13,8 +13,9 @@ def vv kol
     #4
     arr[3]=66
     puts print arr
-
-
+    #5
+    arr.insert(4,55)
+    puts print arr
 end
 vv 5
 
