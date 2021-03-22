@@ -1,3 +1,4 @@
+=begin
 def vv kol 
 	puts "Введите числа: "
 	arr=Array.new(kol){ |i| gets.to_i } 
@@ -18,4 +19,12 @@ def vv kol
     puts print arr
 end
 vv 5
+=end
 
+
+
+def read 
+	arr = File.open('file.txt'){ |file| file.read.split }
+	return arr.each {|i| i.to_i}
+end
+ puts read
