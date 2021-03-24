@@ -127,7 +127,7 @@ def main
 	else
 		for i in 1..(ARGV.length)-1
 			if (ARGV[i].to_i > 0 && ARGV[i].to_i < 8)
-				case ARGV[i].to_i
+				case ARGV[i]
 				when '1'
 					puts sum_dig ARGV[0].to_i
 				when '2'
