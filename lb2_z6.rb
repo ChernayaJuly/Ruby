@@ -48,9 +48,24 @@ def z_25 arr
 end
 
 #z37
+def z_37 arr
+	arr1=[]
+	k = 0
+	for i in 1..(arr.length)-1
+		if arr[i]<arr[i-1]
+			arr1.push(i)
+			k+=1
+		end
+	end
+	puts "indexes:" 
+	puts print arr1
+	puts "kolvo = ", k
+end
+
 #z49
 puts "введите кол-во эл и числа"
 arr=Array.new( ( gets.to_i ) ){ |i| gets.to_i } 
 #puts z_1 arr
 #z_13 arr
-z_25 arr
+#z_25 arr
+z_37 arr
