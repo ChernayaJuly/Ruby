@@ -32,9 +32,25 @@ end
 
 
 #z25
+# arr=[2 7 3 1 6 9], (a,b) a=2 b=8, answer = 7
+def z_25 arr
+	puts "Введите а: "
+	a = gets.to_i
+	puts "Введите b: "
+	b = gets.to_i
+	arr1 = []
+	for i in 0..(arr.length)-1
+		if (arr[i]>a && arr[i]<b)
+			arr1.push(arr[i])
+		end
+	end
+	puts arr1.max
+end
+
 #z37
 #z49
 puts "введите кол-во эл и числа"
 arr=Array.new( ( gets.to_i ) ){ |i| gets.to_i } 
 #puts z_1 arr
-z_13 arr
+#z_13 arr
+z_25 arr
