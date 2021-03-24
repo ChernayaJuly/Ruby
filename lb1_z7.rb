@@ -104,11 +104,8 @@ end
 #numb = ARGV[1]
 #numb = gets.to_i
 
-
-def main 
-	if ARGV.length < 1 || ARGV.length > 2
-		puts "Данные введены некорректно, для справки используйте аргумент -h"
-	elsif (ARGV[0]=='-h' && ARGV.length ==1)
+def help 
+	    puts "Первый аргумент - число, следующие - методы"
 		puts "Метод 1: сумма цифр числа!"
 		puts "Метод 2: произведение цфир числа"
 		puts "Метод 3: max цифра числа!"
@@ -117,24 +114,38 @@ def main
 		puts "Метод 6: кол-во нечетных цифр числа, больших 3!"
 		puts "Метод 7: прозведение таких делителей числа, сумма цифр которых
 меньше, чем сумма цифр исходного числа!"
+end
+
+
+def main 
+	if ARGV.length < 1 || ARGV.length > 8
+		puts "Данные введены некорректно, для справки используйте аргумент -h"
+	elsif (ARGV[0]=='-h' && ARGV.length ==1)
+		help
 	elsif ARGV[0] != '-h' && ARGV.length == 1
 		puts "Данные введены некорректно, для справки используйте аргумент -h"
 	else
-		case ARGV[0]
-			when '1'
-				puts sum_dig ARGV[1].to_i
-			when '2'
-				puts pr_dig ARGV[1].to_i
-			when '3'
-				puts max_dig ARGV[1].to_i
-			when '4'
-				puts min_dig ARGV[1].to_i
-			when '5'
-				puts sum_prost_1 ARGV[1].to_i
-			when '6'
-				puts kolvo_2 ARGV[1].to_i
-			when '7'
-				puts pr_3 ARGV[1].to_i
+		for i in 1..(ARGV.length)-1
+			if (ARGV[i].to_i > 0 && ARGV[i].to_i < 8)
+				case ARGV[i].to_i
+				when '1'
+					puts sum_dig ARGV[0].to_i
+				when '2'
+					puts pr_dig ARGV[0].to_i
+				when '3'
+					puts max_dig ARGV[0].to_i
+				when '4'
+					puts min_dig ARGV[0].to_i
+				when '5'
+					puts sum_prost_1 ARGV[0].to_i
+				when '6'
+					puts kolvo_2 ARGV[0].to_i
+				when '7'
+					puts pr_3 ARGV[0].to_i
+				end
+			else
+				puts "Такого метода нет!Для справки используйте аргумент -h"
+			end
 		end
 	end
 end
