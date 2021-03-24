@@ -17,9 +17,24 @@ end
 
 
 #z13
+def z_13 arr
+	m = arr.min
+	min_ind = arr.index(m)
+	if (m==arr.first)
+		puts "Min = first element"
+	else
+		for i in 0..min_ind-1
+		arr.push(arr.shift)
+		end
+	end
+	puts print arr
+end
+
+
 #z25
 #z37
 #z49
 puts "введите кол-во эл и числа"
 arr=Array.new( ( gets.to_i ) ){ |i| gets.to_i } 
-puts z_1 arr
+#puts z_1 arr
+z_13 arr
