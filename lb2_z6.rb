@@ -2,6 +2,7 @@
 
 #z1
 def z_1 arr
+	input
 	m = arr.max
 	max_ind = arr.index(m)
 	k = 0
@@ -11,13 +12,14 @@ def z_1 arr
 	if (m==arr.last)
 		puts "Max = last element"
 	else
-		k
+		puts k
 	end
 end
 
 
 #z13
 def z_13 arr
+	input
 	m = arr.min
 	min_ind = arr.index(m)
 	if (m==arr.first)
@@ -85,10 +87,25 @@ def z_49 arr
 end
 
 
-puts "введите кол-во эл и числа"
-arr=Array.new( ( gets.to_i ) ){ |i| gets.to_i } 
-#puts z_1 arr
-#z_13 arr
-#z_25 arr
-#z_37 arr
-z_49 arr
+def main 
+	puts "Какую задачу хотите решить?"
+	n = gets.to_i 
+	puts "введите кол-во эл и числа"
+	arr=Array.new( ( gets.to_i ) ){ |i| gets.to_i } 
+	case n
+	when 1
+		z_1 arr
+	when 2
+		z_13 arr
+	when 3
+		z_25 arr
+	when 4
+		z_37 arr
+	when 5
+		z_49 arr
+	else
+		puts "Такой задачи нет!"
+	end
+end
+
+main
