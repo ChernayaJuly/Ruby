@@ -16,7 +16,14 @@ end
 
 
 #z9
+def z_9
+	s = "1/2 8/4 4/3 25/7 8.3"
+	puts s.scan(/[-+]?\d+\/(?:\d{2,}|[1-9])/).map{ |i| i.split("/").map{ |j| j.to_i } }.map{ |i| Rational(i[0], i[1]) }.min
+end
+
+
 #z18
 
 #find
-z_1
+#z_1
+z_9
