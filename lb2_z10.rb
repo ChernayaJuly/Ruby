@@ -10,20 +10,24 @@ end
 #z1
 def z_1
 	s = "2.2 1.34 1.11 -11.11"
-	puts s.scan(/\-\d+\.\d+|\d+\.\d+/).map{ |n| n.to_f }.max
+	puts s.split.each{|i| i.to_f}.max
 end
 
 
 
 #z9
 def z_9
-	s = "1/2 8/4 4/3 25/7 8.3"
-	puts s.scan(/[-+]?\d+\/(?:\d{2,}|[1-9])/).map{ |i| i.split("/").map{ |j| j.to_i } }.map{ |i| Rational(i[0], i[1]) }.min
+	s = "0.5 7.1 0.3 5 8.3"
+	puts s.split(" ").each{|i| i.to_f}.min
 end
 
-
 #z18
+def z_18
+	s = "sddf123bhbj1234bbjhk12345"
+	puts s.split(/\D+/).map{ |x| x.size }.max
+end
 
 #find
-#z_1
+z_1
 z_9
+z_18
