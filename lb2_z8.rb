@@ -1,2 +1,39 @@
-s = "5 2 11 4 35 6 9 8"
-puts s.split.map{ |i| i.to_i }.max
+#v-1
+
+#z1
+def z_1 s
+	puts s.scan(/[А-я]/).size
+end
+
+
+#z9
+#z18
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+s = "FnjkfААяоgfаилrrDDЬЬП"
+#puts s.split.map{ |i| i.to_i }.max
+z_1 s
