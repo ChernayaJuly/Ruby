@@ -77,3 +77,6 @@ def to_s
     "Предыдущая зарплата: #{@prevsalary}\n"
 end
 end
+
+test = Employee.new(fullname ="Черная Юлия Олеговна", birthdate ="05.08.2000", mobphone ="89182128732",address= "ул.Красная,.145", email ="july@gmail.ru", passport = "1316554789", specialization ="журналист", workexp=6, prevnamework ="газетаНовости", post ="редактор", prevsalary =60000)
+puts test
