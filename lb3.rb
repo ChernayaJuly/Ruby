@@ -1,124 +1,189 @@
-class Employees
-    def name
-     @name
-    end
+class Employee
+  def name
+    @name
+  end
 
-    def name=(name)
-        @name = name
-    end
+  def name=(name)
+    @name=name
+  end
 
-    def surname
-        @surname
-    end
+  def surname
+    @surname
+  end
 
-    def surname=(surname)
-        @surname = surname
-    end
+  def surname=(surname)
+    @surname=surname
+  end
 
-    def patronymic
-        @patronymic
-    end
 
-    def patronymic=(patronymic)
-        @patronymic=patronymic
-    end
+  def midname
+    @midname
+  end
 
-    def birthday
-        @birthday
-    end
+  def midname=(midname)
+    @midname=midname
+  end
 
-    def birthday=(birthday)
-        @birthday=birthday
-    end
 
-    def number
-        @number
-    end
+  def birthdate
+    @birthdate
+  end
 
-    def number=(number)
-        @number=number
-    end
+  def birtdate=(birthdate)
+    @birthdate=birthdate
+  end
 
-    def address
-        @address
-    end
 
-    def address=(address)
-        @address=address
-    end
+  def mobphone
+    @mobphone
+  end
 
-    def email
-        @email
-    end
+  def mobphone=(mobphone)
+    @mobphone = self.class.is_valid_mobphone mobphone
+  end
 
-    def email=(email)
-        @email=email
-    end
 
-    def passport
-        @passport
-    end
+  def address
+    @address
+  end
 
-    def passport=(passport)
-        @passport=passport
-    end
+  def address=(address)
+    @address=address
+  end
 
-    def profession
-        @profession
-    end
 
-    def profession=(profession)
-        @profession=profession
-    end
+  def email
+    @email
+  end
 
-    def work_experience
-        @work_experience
-    end
+  def email=(email)
+    @email=email
+  end
 
-    def work_experience=(work_experience)
-        @work_experience=work_experience
-    end
+  def passport
+    @passport
+  end
 
-    def last_work
-        @last_work
-    end
+  def passport=(passport)
+    @passport = passport
+  end
 
-    def last_work=(last_work)
-        @last_work=last_work
-    end
+  def specialization
+    @specialization
+  end
 
-    def post 
-        @post
-    end
+  def specialization=(specialization)
+    @specialization=specialization
+  end
 
-    def post=(post)
-        @post=post
-    end
+  def workexp
+    @workexp
+  end
 
-    def last_salary
-        @last_salary
-    end
+  def workexp=(workexp)
+    @workexp=workexp
+  end
 
-    def last_salary=(last_salary)
-        @last_salary=last_salary
-    end
+  def prevnamework
+    @prevnamework
+  end
 
-    def init(name,surname,patronymic,birthday,number,address,email,passport,profession,work_experience,last_work,post,last_salary)
-        @name=name
-        @surname=surname
-        @patronymic=patronymic
-        @birthday=birthday
-        @number=number
-        @address=address
-        @email=email
-        @passport=passport
-        @profession=profession
-        @work_experience=work_experience
-        @last_work=last_work
-        @post=post
-        @last_salary=last_salary
+  def prevnamework=(prevnamework)
+    @prevnamework= @workexp == 0 ? "NA" : prevnamework
+  end
+
+  def post
+    @post
+  end
+
+  def post=(post)
+    @post= @workexp == 0 ? "NA" : post
+  end
+
+  def prevsalary
+    @prevsalary
+  end
+
+  def prevsalary=(prevsalary)
+    @prevsalary= @workexp == 0 ? 0 : prevsalary
+  end
+
+
+
+  def initialize(name,surname,midname,birthdate,mobphone,address,email,passport,specialization,workexp=0,prevnamework="",post="",prevsalary=0)
+    @name = name
+    @surname = surname
+    @midname = midname
+    @birthdate = birthdate
+    self.mobphone = mobphone
+    @address = address
+    @email = email
+    @passport = passport
+    @specialization = specialization
+    @workexp = workexp
+    self.prevnamework = prevnamework
+    self.post = post
+    self.prevsalary = prevsalary
+  end
+
+  def self.is_russian_mobphone? mobphone
+    mobphone.start_with?("+7","8")
+  end
+
+  def self.is_valid_mobphone mobphone
+    raise StandardError, "Это не российский номер" unless self.is_russian_mobphone? mobphone
+
+    if mobphone.start_with?("+7")
+      mobphone.insert(2,'-')
+      mobphone.insert(6,'-')
+    else
+      mobphone.insert(1,'-')
+      mobphone.insert(5,'-')
     end
+    return mobphone
+  end
+
+
+  def to_s
+    "Это анкета работника:\n" +
+      "Фамилия: #{@name}\n" +
+      "Имя: #{@surname}\n" +
+      "Отчество: #{@midname}\n" +
+      "Дата рождения: #{@birthdate}\n" +
+      "Номер телефона: #{@mobphone}\n" +
+      "Адрес: #{@address}\n" +
+      "E-mail: #{@email}\n" +
+      "Паспорт: #{@passport}\n" +
+      "Специальность: #{@specialization}\n" +
+      "Стаж работы: #{@workexp}\n" +
+      "Предыдущее место работы: #{@prevnamework}\n" +
+      "Должность: #{@post}\n" +
+      "Предыдущая зарплата: #{@prevsalary}\n"
+  end
 end
 
-lala=Employees.new("Черная","Юлия","Олеговна","05.08.2000","89182128732","ул.Красная д.145","july@gmail.ru","1316554789","журналист","6","газета Новости","редактор","60000")
-p lala
+class TestEmployee < Employee
+  def to_s
+    "Это анкета  ТЕСТОГО работника:\n" +
+      "Фамилия: #{@name}\n" +
+      "Имя: #{@surname}\n" +
+      "Отчество: #{@midname}\n" +
+      "Дата рождения: #{@birthdate}\n" +
+      "Номер телефона: #{@mobphone}\n" +
+      "Адрес: #{@address}\n" +
+      "E-mail: #{@email}\n" +
+      "Паспорт: #{@passport}\n" +
+      "Специальность: #{@specialization}\n" +
+      "Стаж работы: #{@workexp}\n" +
+      "Предыдущее место работы: #{@prevnamework}\n" +
+      "Должность: #{@post}\n" +
+      "Предыдущая зарплата: #{@prevsalary}\n\n"
+  end
+end
+
+test = Employee.new("Черная", "Юлия", "Олеговна", "05.08.2000", "89182128732", "ул.Красная,.145", "july@gmail.ru", "1316554789", "журналист", 6, "газетаНовости", "редактор", 60000)
+puts test
+test2 = TestEmployee.new("Иванов","Иван","Иванович","13.02.1994","19321132213","ул. Пыльная, д. невидный","ivan@mail.ru","032125312","Инженер",5,"Газпром","Главный инженер",200000)
+puts test2
+
+
