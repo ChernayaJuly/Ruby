@@ -126,11 +126,11 @@ class Employee
     self.prevsalary = prevsalary
   end
 
-  def self.is_russian_mobphone? mobphone
+  def self.is_russian_mobphone? (mobphone)
     mobphone.start_with?("+7","8")
   end
 
-  def self.is_valid_mobphone mobphone
+  def self.is_valid_mobphone (mobphone)
     raise StandardError, "Это не российский номер" unless self.is_russian_mobphone? mobphone
 
     if mobphone.start_with?("+7")
@@ -170,29 +170,11 @@ class Employee
   end
 end
 
-class TestEmployee < Employee
 
-  def to_s
-    "Это анкета  ТЕСТОГО работника:\n" +
-      "Фамилия: #{@name}\n" +
-      "Имя: #{@surname}\n" +
-      "Отчество: #{@midname}\n" +
-      "Дата рождения: #{@birthdate}\n" +
-      "Номер телефона: #{@mobphone}\n" +
-      "Адрес: #{@address}\n" +
-      "E-mail: #{@email}\n" +
-      "Паспорт: #{@passport}\n" +
-      "Специальность: #{@specialization}\n" +
-      "Стаж работы: #{@workexp}\n" +
-      "Предыдущее место работы: #{@prevnamework}\n" +
-      "Должность: #{@post}\n" +
-      "Предыдущая зарплата: #{@prevsalary}\n\n"
-  end
-end
 
-test = Employee.new("Черная", "Юлия", "Олеговна", "05.08.2000", "89182128732", "ул.Красная,.145", "july@gmail.ru", "1316554789", "журналист", 6, "газетаНовости", "редактор", 60000)
+test = Employee.new(name="Черная",surname ="Юлия", midname ="Олеговна", birthdate ="05.08.2000", mobphone ="89182128732",address= "ул.Красная,.145", email ="july@gmail.ru", passport = "1316554789", specialization ="журналист", workexp=6, prevnamework ="газетаНовости", post ="редактор", prevsalary =60000)
 puts test
-test2 = TestEmployee.new("Иванов","Иван","Иванович","13.02.1994","19321132213","ул. Пыльная, д. невидный","ivan@mail.ru","032125312","Инженер",5,"Газпром","Главный инженер",200000)
+test2 = Employee.new(name="Иванов",surname ="Иван",midname ="Иванович",birthdate ="13.02.1994",mobphone ="19321132213",address="ул. Пыльная, д. невидный",email="ivan@mail.ru",passport = "032125312",specialization ="Инженер",workexp=5,prevnamework ="Газпром",post ="Главный инженер",prevsalary =200000)
 puts test2
 
 
