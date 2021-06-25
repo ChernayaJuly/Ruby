@@ -16,7 +16,7 @@ class Employee
   end
 
   def birtdate=(birthdate)
-    @birthdate=birthdate
+    @birthdate= self.class.is_valid_birthdate birthdate
   end
 
 
@@ -96,9 +96,9 @@ class Employee
 
 
 
-  def initialize(name,surname,midname,birthdate,mobphone,address,email,passport,specialization,workexp=0,prevnamework="",post="",prevsalary=0)
+  def initialize(fullname,birthdate,mobphone,address,email,passport,specialization,workexp=0,prevnamework="",post="",prevsalary=0)
     @fullname = fullname
-    @birthdate = birthdate
+    self.birthdate = birthdate
     self.mobphone = mobphone
     @address = address
     self.email = email
@@ -113,7 +113,7 @@ class Employee
 
 
   def to_s
-      "ФИО: #{@fullname}\n" +
+      "ФИО:#{@fullname}\n" +
       "Отчество: #{@midname}\n" +
       "Дата рождения: #{@birthdate}\n" +
       "Номер телефона: #{@mobphone}\n" +

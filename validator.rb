@@ -36,4 +36,16 @@ module Validator
     if name.length == 4
       name[-1].downcase!
     end
+
+    def self.is_birthdate? birthdate
+      (/([0-2]\d|3[0-1]|\d).(0[1-9]|1[0-2]).(\d{2}|\d{4})/ =~ birthdate) != nil
+    end
+
+    def self.is_valid_birthdate birthdate
+      raise StandardError, "Неправильный формат даты" unless self.is_birthdate? birthdate
+      unless birthdate[/.\d{4}/] == nil
+        return DateTime.strptime(birthdate,'%d.%m.%Y').strftime('%d.%m.%Y')
+      end
+      return DateTime.strptime(birthdate,'%d.%m.%y').strftime('%d.%m.%Y')
+    end
 end
