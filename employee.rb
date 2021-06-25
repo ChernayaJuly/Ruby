@@ -64,7 +64,6 @@ end
 
 def to_s
   "ФИО:#{@fullname}\n" +
-    "Отчество: #{@midname}\n" +
     "Дата рождения: #{@birthdate}\n" +
     "Номер телефона: #{@mobphone}\n" +
     "Адрес: #{@address}\n" +
@@ -73,7 +72,7 @@ def to_s
     "Специальность: #{@specialization}\n" +
     "Стаж работы: #{@workexp}\n" +
     "Предыдущее место работы: #{@prevnamework}\n" +
-    "Должность: #{@post}\n" +
+    "Должность: #{@post} \n" +
     "Предыдущая зарплата: #{@prevsalary}\n"
 end
 end
