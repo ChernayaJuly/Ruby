@@ -57,7 +57,7 @@ class Employee
   end
 
   def email=(email)
-    @email=email
+    @email= self.class.is_valid_email email
   end
 
   def passport
@@ -117,7 +117,7 @@ class Employee
     @birthdate = birthdate
     self.mobphone = mobphone
     @address = address
-    @email = email
+    self.email = email
     @passport = passport
     @specialization = specialization
     @workexp = workexp
@@ -143,9 +143,17 @@ class Employee
     return mobphone
   end
 
+  def self.is_email? email
+    (/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/ =~ email ) != nil
+  end
+
+  def self.is_valid_email email
+    raise StandardError, "Неправильный email" unless self.is_email? email
+    return email.downcase
+  end
 
   def to_s
-    "Это анкета работника:\n" +
+      "Это анкета работника:\n" +
       "Фамилия: #{@name}\n" +
       "Имя: #{@surname}\n" +
       "Отчество: #{@midname}\n" +
@@ -163,6 +171,7 @@ class Employee
 end
 
 class TestEmployee < Employee
+
   def to_s
     "Это анкета  ТЕСТОГО работника:\n" +
       "Фамилия: #{@name}\n" +
