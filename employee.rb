@@ -1,137 +1,79 @@
+require 'date'
 require_relative 'validator'
 
 class Employee
   include  Validator
 
-  def fullname
-    @fullname
-  end
+  attr_accessor :address, :specialization, :post
+
+  attr_reader :fullname, :birthdate, :mobphone, :email, :passport, :workexp, :prevnamework, :prevsalary
 
   def fullname=(fullname)
-    @fullname=fullname
-  end
+  @fullname = Validator.to_valid_fullname fullname
+end
 
-  def birthdate
-    @birthdate
-  end
+def birthdate=(birthdate)
+  @birthdate = Validator.to_valid_birthdate birthdate
 
-  def birtdate=(birthdate)
-    @birthdate= self.class.is_valid_birthdate birthdate
-  end
+end
 
+def mobphone=(mobphone)
+  @mobphone = Validator.to_valid_mobphone mobphone
+end
 
-  def mobphone
-    @mobphone
-  end
+def email=(email)
+  @email = Validator.to_valid_email email
+end
 
-  def mobphone=(mobphone)
-    @mobphone = self.class.is_valid_mobphone mobphone
-  end
+def passport=(passport)
+  @passport = Validator.to_valid_passport passport
+end
 
+def workexp=(workexp)
+  @workexp = workexp.to_i.negative? ? 0 : workexp.to_i
+end
 
-  def address
-    @address
-  end
+def prevnamework=(prevnamework)
+  @prevnamework = @workexp.zero? ? 'NA' : prevnamework
+end
 
-  def address=(address)
-    @address=address
-  end
-
-
-  def email
-    @email
-  end
-
-  def email=(email)
-    @email= self.class.is_valid_email email
-  end
-
-  def passport
-    @passport
-  end
-
-  def passport=(passport)
-    @passport = self.class.is_valid_passport passport
-  end
-
-  def specialization
-    @specialization
-  end
-
-  def specialization=(specialization)
-    @specialization=specialization
-  end
-
-  def workexp
-    @workexp
-  end
-
-  def workexp=(workexp)
-    @workexp=workexp
-  end
-
-  def prevnamework
-    @prevnamework
-  end
-
-  def prevnamework=(prevnamework)
-    @prevnamework= @workexp == 0 ? "NA" : prevnamework
-  end
-
-  def post
-    @post
-  end
-
-  def post=(post)
-    @post= @workexp == 0 ? "NA" : post
-  end
-
-  def prevsalary
-    @prevsalary
-  end
-
-  def prevsalary=(prevsalary)
-    @prevsalary= @workexp == 0 ? 0 : prevsalary
-  end
-
-
-
-  def initialize(fullname,birthdate,mobphone,address,email,passport,specialization,workexp=0,prevnamework="",post="",prevsalary=0)
-    @fullname = fullname
-    self.birthdate = birthdate
-    self.mobphone = mobphone
-    @address = address
-    self.email = email
-    self.passport = passport
-    @specialization = specialization
-    @workexp = workexp
-    self.prevnamework = prevnamework
-    self.post = post
-    self.prevsalary = prevsalary
-  end
-
-
-
-  def to_s
-      "ФИО:#{@fullname}\n" +
-      "Отчество: #{@midname}\n" +
-      "Дата рождения: #{@birthdate}\n" +
-      "Номер телефона: #{@mobphone}\n" +
-      "Адрес: #{@address}\n" +
-      "E-mail: #{@email}\n" +
-      "Паспорт: #{@passport}\n" +
-      "Специальность: #{@specialization}\n" +
-      "Стаж работы: #{@workexp}\n" +
-      "Предыдущее место работы: #{@prevnamework}\n" +
-      "Должность: #{@post}\n" +
-      "Предыдущая зарплата: #{@prevsalary}\n"
-  end
+def prevsalary=(prevsalary)
+  @prevsalary = @workexp.to_i.zero? ? 0 : prevsalary.to_i
 end
 
 
-test = Employee.new(name="Черная",surname ="Юлия", midname ="Олеговна", birthdate ="05.08.2000", mobphone ="89182128732",address= "ул.Красная,.145", email ="july@gmail.ru", passport = "1316554789", specialization ="журналист", workexp=6, prevnamework ="газетаНовости", post ="редактор", prevsalary =60000)
-puts test
-test2 = Employee.new(name="Иванов",surname ="Иван",midname ="Иванович",birthdate ="13.02.1994",mobphone ="19321132213",address="ул. Пыльная, д. невидный",email="ivan@mail.ru",passport = "032125312",specialization ="Инженер",workexp=5,prevnamework ="Газпром",post ="Главный инженер",prevsalary =200000)
-puts test2
 
+def initialize( fullname, birthdate, mobphone, address, email, passport, specialization, workexp = 0, prevnamework = '', post_id = nil, prevsalary = 0)
+  self.fullname = fullname
+  self.birthdate = birthdate
+  self.mobphone = mobphone
+  self.address = address
+  self.email = email
+  self.passport = passport
+  self.specialization = specialization
+  self.workexp = workexp
+  self.prevnamework = prevnamework
+  self.post = post_id
+  self.prevsalary = prevsalary
+end
 
+def data
+  post_name = post.nil? ? 'NULL' : post.post_name
+  [fullname, birthdate, mobphone, address, email, passport, specialization, workexp, prevnamework, post_name, prevsalary]
+end
+
+def to_s
+  "ФИО:#{@fullname}\n" +
+    "Отчество: #{@midname}\n" +
+    "Дата рождения: #{@birthdate}\n" +
+    "Номер телефона: #{@mobphone}\n" +
+    "Адрес: #{@address}\n" +
+    "E-mail: #{@email}\n" +
+    "Паспорт: #{@passport}\n" +
+    "Специальность: #{@specialization}\n" +
+    "Стаж работы: #{@workexp}\n" +
+    "Предыдущее место работы: #{@prevnamework}\n" +
+    "Должность: #{@post}\n" +
+    "Предыдущая зарплата: #{@prevsalary}\n"
+end
+end
