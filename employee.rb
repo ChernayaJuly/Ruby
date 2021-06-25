@@ -1,33 +1,15 @@
-require_relative Vvalidator
+require_relative 'validator'
 
 class Employee
-  include Validator
+  include  Validator
 
-  def name
-    @name
+  def fullname
+    @fullname
   end
 
-  def name=(name)
-    @name=name
+  def fullname=(fullname)
+    @fullname=fullname
   end
-
-  def surname
-    @surname
-  end
-
-  def surname=(surname)
-    @surname=surname
-  end
-
-
-  def midname
-    @midname
-  end
-
-  def midname=(midname)
-    @midname=midname
-  end
-
 
   def birthdate
     @birthdate
@@ -115,9 +97,7 @@ class Employee
 
 
   def initialize(name,surname,midname,birthdate,mobphone,address,email,passport,specialization,workexp=0,prevnamework="",post="",prevsalary=0)
-    @name = name
-    @surname = surname
-    @midname = midname
+    @fullname = fullname
     @birthdate = birthdate
     self.mobphone = mobphone
     @address = address
@@ -133,9 +113,7 @@ class Employee
 
 
   def to_s
-    "Это анкета работника:\n" +
-      "Фамилия: #{@name}\n" +
-      "Имя: #{@surname}\n" +
+      "ФИО: #{@fullname}\n" +
       "Отчество: #{@midname}\n" +
       "Дата рождения: #{@birthdate}\n" +
       "Номер телефона: #{@mobphone}\n" +

@@ -24,4 +24,16 @@ module Validator
     raise StandardError, "Неправильный email" unless self.is_email? email
     return email.downcase
   end
+
+  def self.is_fullname? fullname
+    (/[а-яА-я]*(\s?[-]\s?[а-яА-Я]*)?\s[а-яА-я]*(\s?[-]\s?[а-яА-Я]*)?\s[А-Я][а-я]*(\s[а-яА-Я]*)?$/ =~ fullname.rstrip.lstrip) != nil && fullname[/[0-9a-zA-Z]/] == nil
+  end
+
+  def self.is_valid_fullname fullname
+    raise StandardError, "Неправильное ФИО" unless self.is_fullname? fullname
+    name = fullname.lstrip.rstrip[/[а-яА-я]*(\s?[-]\s?[а-яА-Я]*)?\s[а-яА-я]*(\s?[-]\s?[а-яА-Я]*)?\s[А-Я][а-я]*(\s[а-яА-Я]*)?$/].gsub(/\s[-]\s/,'-').split
+    name.map! {|e| e[/[-]/]==nil ? e.capitalize: e.split('-').map!{|k| k.capitalize}.join('-') }
+    if name.length == 4
+      name[-1].downcase!
+    end
 end
