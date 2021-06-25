@@ -48,4 +48,14 @@ module Validator
       end
       return DateTime.strptime(birthdate,'%d.%m.%y').strftime('%d.%m.%Y')
     end
-end
+
+    def self.is_passport? passport
+      (/^([0-9]{10})$/ =~ passport) != nil
+    end
+
+    def self.is_valid_passport passport
+      raise StandardError, "Неправильный номер паспорта" unless self.is_passport? passport
+      return passport.insert(2,' ').insert(5,' ')
+    end
+
+  end

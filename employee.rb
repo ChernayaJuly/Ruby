@@ -51,7 +51,7 @@ class Employee
   end
 
   def passport=(passport)
-    @passport = passport
+    @passport = self.class.is_valid_passport passport
   end
 
   def specialization
@@ -102,7 +102,7 @@ class Employee
     self.mobphone = mobphone
     @address = address
     self.email = email
-    @passport = passport
+    self.passport = passport
     @specialization = specialization
     @workexp = workexp
     self.prevnamework = prevnamework
