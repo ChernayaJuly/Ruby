@@ -8,6 +8,14 @@ class Reader
 
     attr_reader :fullname, :birthdate, :mobphone, :email, :passport, :debt
 
+    def id
+      @id
+    end
+
+    def id=(id)
+      @id = id
+    end
+
     def fullname=(fullname)
       @fullname = Validator_read.to_valid_fullname fullname
     end
@@ -35,6 +43,7 @@ class Reader
 
 
     def initialize( fullname, birthdate, mobphone, address, email, passport, debt)
+      self.id = id
       self.fullname = fullname
       self.birthdate = birthdate
       self.mobphone = mobphone
