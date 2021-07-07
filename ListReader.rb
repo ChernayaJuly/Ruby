@@ -25,7 +25,7 @@ def read_list_DB(conn)
     end
 
     def read_list_DB
-      Database.instance.select_all
+      Database.get_instance.select_all
     end
 
   def add(reader)

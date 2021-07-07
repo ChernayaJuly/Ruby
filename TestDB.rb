@@ -13,15 +13,14 @@ def initialize
   self.conn = db_mysql_con
 end
 
-def self.instance
-  @@instance ||= new
-end
 
 def self.get_instance
   if @@instance == nil
-    @@instance - DB.new
+    @@instance = DB.new
   end
-  
+  @@instance
+  end
+
 end
 def db_mysql_con
   Mysql2::Client.new(host: '127.0.0.1', username: 'yulia', password: 'Yulia2000', database: 'Stuff')
