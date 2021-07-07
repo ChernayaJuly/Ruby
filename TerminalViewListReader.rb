@@ -6,13 +6,13 @@ class TerminalViewListReader
   include Validator_read
 
   attr_accessor :list_reader
-  attr_reader :connection
+  attr_reader :db
 
 
 
   def initialize
-    connection = Database.new
-    self.list_reader = ListReader.new(connection.conn)
+    db = Database.new
+    self.list_employee = ListEmployee.new(db.conn)
   end
 
   def show
