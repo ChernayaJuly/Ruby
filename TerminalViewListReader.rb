@@ -1,18 +1,24 @@
 require_relative 'ListReader'
 require_relative 'validator_read'
+require_relative 'TestDB'
 
 class TerminalViewListReader
   include Validator_read
 
   attr_accessor :list_reader
+  attr_reader :connection
+
+
 
   def initialize
-    self.list_reader = ListReader.new('data.txt')
+    connection = Database.new
+    self.list_reader = ListReader.new(connection.conn)
   end
 
   def show
     puts list_reader.show
   end
+
 
   def add
     begin
@@ -117,6 +123,10 @@ class TerminalViewListReader
 
   def close
     exit 0
+  end
+
+  def db_mysql_con
+    client = Mysql2::Client.new(host: '127.0.0.1', username: 'yulia', password: 'Yulia2000', database: 'Staff')
   end
 
   def start

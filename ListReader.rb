@@ -2,9 +2,9 @@ require_relative 'reader'
 
   attr_accessor :reader_list
 
-  def initialize(path)
+  def initialize(conn)
     self.reader_list = []
-    read_list path
+    read_list_DB(conn)
   end
 
   def read_list(path)
@@ -14,8 +14,13 @@ require_relative 'reader'
       reader = Reader.new(*fields)
       add reader
     end
-
   end
+
+def read_list_DB(conn)
+  conn.query('SELECT * FROM Employees').each do |r|
+    conn.query('SELECT * FROM Reader').each do |r|
+      reader_list << Reader.new(r["idReader"], r["name"], r["birthdate"].strftime('%d.%m.%Y'), r["mobphone"], r["address"], r["email"], r["passport"], r["debt"])
+end
 
   def add(reader)
     reader_list.push(reader)
@@ -69,4 +74,3 @@ require_relative 'reader'
     @reader_list.each(&block)
   end
 
-end
